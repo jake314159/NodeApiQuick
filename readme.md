@@ -7,13 +7,13 @@ Create a simple json based api server supporting both GET and POST requests quic
 Time for a quick example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://host/date/now"
 
 ```javascript
-var api = require('NodeApiQuick');
+var api = require('ApiQuick');
 api.init(8080);
 api.addPackage('date', {
-	'now': function(method, arg, params) {
-		var currentDate = new Date();
-		return {time:currentDate.toUTCString()};
-	}
+  'now': function(method, arg, params) {
+    var currentDate = new Date();
+    return {time:currentDate.toUTCString()};
+  }
 });
 ```
 
@@ -45,3 +45,4 @@ Copyright 2015 Jacob Causon
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+   

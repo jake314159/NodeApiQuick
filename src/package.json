@@ -1,17 +1,17 @@
 {
   "author": "Jake Causon",
-  "name": "NodeApiQuick",
+  "name": "ApiQuick",
   "description": "Create a simple api quick and easy",
   "version": "0.1",
   "repository": {
     "url": "https://github.com/jake314159/NodeApiQuick"
   },
-  "main": "./lib/NodeApiQuick",
+  "main": "./lib/ApiQuick",
   "keywords": [
     "api",
   ],
   "bin": {
-    "NodeApiQuick": "./bin/NodeApiQuick"
+    "NodeApiQuick": "./bin/ApiQuick"
   },
   "dependencies": {
     "express":">0",

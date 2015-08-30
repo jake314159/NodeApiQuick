@@ -8,9 +8,9 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-var NodeApiQuick = function () {};
+var ApiQuick = function () {};
 
-NodeApiQuick.prototype = {
+ApiQuick.prototype = {
 
 	init: function(port) {
 		this.packages = {}
@@ -62,4 +62,4 @@ NodeApiQuick.prototype = {
 	}
 }
 
-module.exports = new NodeApiQuick();
+module.exports = new ApiQuick();
