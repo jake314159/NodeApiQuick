@@ -107,6 +107,28 @@ api.init(8080,{
 });
 ```
 
+## Rate limits
+
+Also included is some basic rate limit functionality, disabled by default. There are two ways of doing this...
+
+Using the default values:
+
+```javascript
+api.init(8080, {'rateLimit':true});
+```
+
+or using your own custom values:
+
+```javascript
+api.init(8080, {
+  'rateLimit': {
+    'period': 60, //Seconds
+    'limit': 60
+  }
+}
+});
+```
+
 ## Dependencies
 
 + fs

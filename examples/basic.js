@@ -1,5 +1,5 @@
 var api = require('../lib/ApiQuick');
-api.init(8080);
+api.init(8080, {'rateLimit':true});
 api.addPackage('date', 
 	{
 		'now': function(method, arg, params) {
