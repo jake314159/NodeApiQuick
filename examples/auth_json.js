@@ -9,7 +9,7 @@ api.addPackage('date',
 	}
 );
 
-// Auth example using curl ("test:test")
-// curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
-credentials = {'username':'password'}
+// Auth example using curl ("user:pass")
+// curl -H "Authorization: dXNlcjpwYXNz" 127.0.0.1:8080/date/now
+credentials = {'user':'pass'}
 api.authByJson(credentials);

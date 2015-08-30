@@ -12,8 +12,8 @@ api.addPackage('date',
 	}
 );
 
-// Auth example using curl ("test:test")
-// curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
+// Auth example using curl ("user:pass")
+// curl -H "Authorization: dXNlcjpwYXNz" 127.0.0.1:8080/date/now
 api.auth(function(user,pass) {
-	return pass=='test';
+	return pass=='pass';
 });

@@ -41,9 +41,9 @@ Function should return a json structure to return to the client.
 
 ## Basic auth
 
-QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is encoded with base64 and joined with a ':' between by the client. This is then put into the header '*Authorization*'. An example of sending the username and password 'test' with curl is shown below:
+QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is joined with a ':' between and then encoded with base64. This is then put into the header '*Authorization*'. An example of sending the username and password 'test' with curl is shown below:
 ```
-curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
+curl -H "Authorization: dXNlcjpwYXNz" 127.0.0.1:8080/date/now
 ```
 
 Google for proper secure uses of Basic auth, it's up to you to do it right. ApiQuick also supports SSL, scroll down for more information.
