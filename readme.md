@@ -78,7 +78,7 @@ First you need to generate a key and certificate. Click [here](http://docs.nodej
 To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
 
 ```javascript
-var api = require('./lib/ApiQuick');
+var api = require('ApiQuick');
 api.init(8080,{
   'ssl': {
       'key':'./key.pem',

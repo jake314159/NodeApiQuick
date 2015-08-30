@@ -1,0 +1,7 @@
+*.pem
+*.key
+*.crt
+*.csr
+*~
+*.DS_STORE*
+node_modules/*
