@@ -30,6 +30,48 @@ Function arguments are
 
 Function should return a json structure to return to the client 
 
+## Basic auth
+
+QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is encoded with base64 and joined with a ':' between. This is then put into the header 'Authorization'. An example of sending the username and password 'test' with curl is shown below:
+```
+curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
+```
+
+Google for proper secure uses of Basic auth, it's up to you to do it right.
+
+There are two methods of doing auth.
+
+### One
+
+By using a global auth function
+
+```javascript
+api.auth(function(user,pass) {
+  return pass=='test';
+});
+```
+
+### Two
+
+By doing a package specific function
+
+```javascript
+api.addPackage('date', 
+  {
+    'now': function(method, arg, params) {
+      var currentDate = new Date();
+      return {time:currentDate.toUTCString()};
+    }
+  }, 
+  {
+    'auth':function(){return true;}
+  }
+);
+```
+
+Package specific auth functions are used if present and if not then the global function is used.
+
+
 ## Dependencies
 
 + express
