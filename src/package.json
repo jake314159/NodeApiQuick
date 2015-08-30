@@ -6,6 +6,10 @@
   "repository": {
     "url": "https://github.com/jake314159/NodeApiQuick"
   },
+  "files":[
+    "./lib"
+  ],
+  "license" : "Apache-2.0",
   "main": "./lib/ApiQuick",
   "keywords": [
     "api",
@@ -14,8 +18,8 @@
     "NodeApiQuick": "./bin/ApiQuick"
   },
   "dependencies": {
-    "express":">0",
-    "body-parser":">0"
+    "express":"*",
+    "body-parser":"*"
   },
   "engines": {
     "node": "*"
