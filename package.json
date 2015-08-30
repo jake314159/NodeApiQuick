@@ -16,7 +16,10 @@
   ],
   "dependencies": {
     "express":"*",
-    "body-parser":"*"
+    "body-parser":"*",
+    "fs":"*",
+    "http":"*",
+    "https":"*"
   },
   "engines": {
     "node": "*"
