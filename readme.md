@@ -2,6 +2,12 @@
 
 Create a simple json based api server supporting both GET and POST requests quickly and easily.
 
+##Install me
+
+```bash
+npm install https://github.com/jake314159/NodeApiQuick.git
+```
+
 ##Basic api server
 
 Time for a quick example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://host/date/now"
@@ -45,4 +51,3 @@ Copyright 2015 Jacob Causon
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
