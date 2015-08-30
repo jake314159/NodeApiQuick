@@ -10,40 +10,49 @@ npm install https://github.com/jake314159/NodeApiQuick.git
 
 ##Basic api server
 
-Time for a quick example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://host/date/now"
+Time for a quick example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1/date/now".
 
 ```javascript
 var api = require('ApiQuick');
 api.init(8080);
 api.addPackage('date', {
-  'now': function(method, arg, params) {
+  'now': function() {
     var currentDate = new Date();
     return {time:currentDate.toUTCString()};
   }
 });
 ```
 
-Function arguments are
-> http://127.0.0.1:8080/:package/:function/:arg,?:params
-+ method: 'GET' or 'POST'
-+ arg: String for the third element in the url (or undefined if not specified). Params is either the url encoded paramiters for GET requests or the posted data for POST requests in a JSON format.
+Example url:
+```
+http://127.0.0.1:8080/:package/:function/:arg?:params
+```
 
-Function should return a json structure to return to the client 
+Maps to the function arguments:
+```javascript
+function(method, arg, params)
+```
+
++ **method**: 'GET' or 'POST'
++ **arg**: String for the third element in the url (or undefined if not specified). 
++ **params**: is either the url encoded paramiters for GET requests or the posted data for POST requests in a JSON format.
+
+Function should return a json structure to return to the client.
 
 ## Basic auth
 
-QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is encoded with base64 and joined with a ':' between. This is then put into the header 'Authorization'. An example of sending the username and password 'test' with curl is shown below:
+QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is encoded with base64 and joined with a ':' between by the client. This is then put into the header '*Authorization*'. An example of sending the username and password 'test' with curl is shown below:
 ```
 curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
 ```
 
-Google for proper secure uses of Basic auth, it's up to you to do it right.
+Google for proper secure uses of Basic auth, it's up to you to do it right. ApiQuick also supports SSL, scroll down for more information.
 
-There are two methods of doing auth.
+The authentication works by you supplying a function that returns either *true* or *false* indicating if the username and password is valid. There are two methods of doing auth with ApiQuick.
 
 ### One
 
-By using a global auth function
+By using a global auth function which applies to all packages.
 
 ```javascript
 api.auth(function(user,pass) {
@@ -53,7 +62,7 @@ api.auth(function(user,pass) {
 
 ### Two
 
-By doing a package specific function
+By doing a package specific function (supplied in the extra paramiter)
 
 ```javascript
 api.addPackage('date', 
@@ -69,11 +78,11 @@ api.addPackage('date',
 );
 ```
 
-Package specific auth functions are used if present and if not then the global function is used.
+Package specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 
 ## SSL
 
-First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed key. Go google about SSL if you don't know what this means.
+First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
 
 To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
 

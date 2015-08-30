@@ -5,7 +5,6 @@ api.init(8080,{
 			'cert':'./cert.pem'
 		}
 });
-
 api.addPackage('date', 
 	{
 		'now': function(method, arg, params) {
