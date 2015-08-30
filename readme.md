@@ -48,7 +48,7 @@ curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
 
 Google for proper secure uses of Basic auth, it's up to you to do it right. ApiQuick also supports SSL, scroll down for more information.
 
-The authentication works by you supplying a function that returns either *true* or *false* indicating if the username and password is valid. There are two methods of doing auth with ApiQuick.
+The authentication works by you supplying a function that returns either *true* or *false* indicating if the username and password is valid. There are a few methods of doing auth with ApiQuick.
 
 ### One
 
@@ -77,6 +77,17 @@ api.addPackage('date',
   }
 );
 ```
+
+###Three
+
+By providing username and password pairs in a json format. This will be applied as a global auth function.
+
+```javascript
+api.authByJson({'username':'password'});
+```
+
+
+
 
 Package specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 

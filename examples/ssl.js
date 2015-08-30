@@ -1,4 +1,4 @@
-var api = require('./lib/ApiQuick');
+var api = require('../lib/ApiQuick');
 api.init(8080,{
 	'ssl': {
 			'key':'./key.pem',

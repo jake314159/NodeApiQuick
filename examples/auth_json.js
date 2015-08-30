@@ -6,14 +6,10 @@ api.addPackage('date',
 			var currentDate = new Date();
 			return {time:currentDate.toUTCString()};
 		}
-	}, 
-	{
-		'auth':function(){return true;}
 	}
 );
 
 // Auth example using curl ("test:test")
 // curl -H "Authorization: dGVzdA:dGVzdA" 127.0.0.1:8080/date/now
-api.auth(function(user,pass) {
-	return pass=='test';
-});
+credentials = {'username':'password'}
+api.authByJson(credentials);
