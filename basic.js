@@ -8,7 +8,7 @@ api.addPackage('date',
 		}
 	}, 
 	{
-		'auth':function(){console.log('Alt auth'); return true;}
+		'auth':function(){return true;}
 	}
 );
 
