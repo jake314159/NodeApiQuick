@@ -16,10 +16,10 @@ Time for a quick example! The below code creates an api server that responds to 
 var api = require('ApiQuick');
 api.init(8080);
 api.addPackage('date', {
-  'now': function() {
-    var currentDate = new Date();
-    return {time:currentDate.toUTCString()};
-  }
+    'now': function() {
+        var currentDate = new Date();
+        return { 'time': currentDate.toUTCString() };
+    }
 });
 ```
 
@@ -50,7 +50,15 @@ Google for proper secure uses of Basic auth, it's up to you to do it right. ApiQ
 
 The authentication works by you supplying a function that returns either *true* or *false* indicating if the username and password is valid. There are a few methods of doing auth with ApiQuick.
 
-### One
+###One
+
+By providing username and password pairs in a json format. This will be applied as a global auth function.
+
+```javascript
+api.authByJson({'username':'password'});
+```
+
+###Two
 
 By using a global auth function which applies to all packages.
 
@@ -60,7 +68,7 @@ api.auth(function(user,pass) {
 });
 ```
 
-### Two
+###Three
 
 By doing a package specific function (supplied in the extra paramiter)
 
@@ -78,15 +86,6 @@ api.addPackage('date',
 );
 ```
 
-###Three
-
-By providing username and password pairs in a json format. This will be applied as a global auth function.
-
-```javascript
-api.authByJson({'username':'password'});
-```
-
-
 
 
 Package specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
@@ -100,9 +99,9 @@ To use ssl simply give the paths to the key and cert in the extra data as shown 
 ```javascript
 var api = require('ApiQuick');
 api.init(8080,{
-  'ssl': {
-      'key':'./key.pem',
-      'cert':'./cert.pem'
+    'ssl': {
+        'key':'./key.pem',
+        'cert':'./cert.pem'
     }
 });
 ```
@@ -121,11 +120,10 @@ or using your own custom values:
 
 ```javascript
 api.init(8080, {
-  'rateLimit': {
-    'period': 60, //Seconds
-    'limit': 60
-  }
-}
+    'rateLimit': {
+        'period': 60, //Seconds
+        'limit': 60
+    }
 });
 ```
 
