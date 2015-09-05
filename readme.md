@@ -58,6 +58,12 @@ By providing username and password pairs in a json format. This will be applied 
 api.authByJson({'username':'password'});
 ```
 
+Multiple password keys can also be supplied for one user with an array.
+
+```javascript
+api.authByJson({ 'username': ['key1', 'key2'] });
+```
+
 ###Two
 
 By using a global auth function which applies to all packages.

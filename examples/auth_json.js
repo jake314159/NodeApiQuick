@@ -11,5 +11,5 @@ api.addPackage('date',
 
 // Auth example using curl ("user:pass")
 // curl -H "Authorization: dXNlcjpwYXNz" 127.0.0.1:8080/date/now
-credentials = {'user':'pass'}
+credentials = {'user1': 'test','user2':['pass', 'word']}
 api.authByJson(credentials);
