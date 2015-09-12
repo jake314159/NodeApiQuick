@@ -98,7 +98,7 @@ Package specific auth functions are used if present and if not then the global f
 
 ## SSL
 
-First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
+First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate and [this](http://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/) is good for doing it with your own root CA. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
 
 To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
 
