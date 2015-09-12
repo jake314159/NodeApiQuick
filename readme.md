@@ -5,7 +5,7 @@ Create a simple json based api server supporting both GET and POST requests quic
 ##Install me
 
 ```bash
-npm install https://github.com/jake314159/NodeApiQuick.git
+npm install https://github.com/jake314159/NodeApiQuick/tarball/master
 ```
 
 ##Basic api server
