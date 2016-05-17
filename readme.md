@@ -140,6 +140,7 @@ api.init(8080, {
 + body-parser
 + http
 + https
++ secure-compare
 
 ## License
 
