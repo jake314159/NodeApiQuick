@@ -4,13 +4,15 @@ Create a simple json based api server supporting both GET and POST requests quic
 
 ##Install me
 
+Install using [npm](https://www.npmjs.com/package/api-quick) with the command
+
 ```bash
-npm install api-quick
+npm install api-quick --save
 ```
 
 ##Basic api server
 
-Time for a quick example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1/date/now".
+Time for a quick 8 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date/now".
 
 ```javascript
 var api = require('ApiQuick');
@@ -22,6 +24,16 @@ api.addPackage('date', {
     }
 });
 ```
+
+Doing a GET request on the above url will then return the data:
+
+```
+{"time":"Tue, 17 May 2016 17:11:07 GMT"}
+```
+
+## URL Layout
+
+The components of the url that are provided to your function is shown below
 
 Example url:
 ```
@@ -98,7 +110,7 @@ Package specific auth functions are used if present and if not then the global f
 
 ## SSL
 
-First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate and [this](http://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/) is good for doing it with your own root CA. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
+First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate and [this](http://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/) is good for doing it with your own root CA. You could also use [LetsEncrypt](https://letsencrypt.org/) to create and sign your certificates for free. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
 
 To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
 
