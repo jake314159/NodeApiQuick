@@ -1,5 +1,9 @@
 # Release history
 
+## Unreleased
+
++ Update readme
++ Code layout & implementation improvements
 
 ## 0.1.2 BETA (2016-05-17)
 
