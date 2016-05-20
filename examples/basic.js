@@ -1,10 +1,6 @@
-var api = require('../lib/ApiQuick');
-api.init(8080, {'rateLimit':true});
+var api = require('../lib/ApiQuick').init(8080);
 api.addPackage('date', 
-	{
-		'now': function(method, arg, params) {
-			var currentDate = new Date();
-			return {time:currentDate.toUTCString()};
-		}
+	function(method, arg, params) {
+		return {date: new Date().toUTCString()};
 	}
 );

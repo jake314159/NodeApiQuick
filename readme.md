@@ -12,17 +12,15 @@ npm install api-quick --save
 
 ##Basic api server
 
-Time for a quick 8 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date/now".
+Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
 ```javascript
-var api = require('ApiQuick');
-api.init(8080);
-api.addPackage('date', {
-    'now': function() {
-        var currentDate = new Date();
-        return { 'time': currentDate.toUTCString() };
-    }
-});
+var api = require('../lib/ApiQuick').init(8080);
+api.addPackage('date', 
+  function(method, arg, params) {
+    return {date: new Date().toUTCString()};
+  }
+);
 ```
 
 Doing a GET request on the above url will then return the data:
