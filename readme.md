@@ -26,7 +26,7 @@ api.addPackage('date',
 Doing a GET request on the above url will then return the data:
 
 ```
-{"time":"Tue, 17 May 2016 17:11:07 GMT"}
+{"date":"Tue, 17 May 2016 17:11:07 GMT"}
 ```
 
 ## URL Layout
@@ -44,7 +44,7 @@ function(method, arg, params)
 ```
 
 + **method**: 'GET' or 'POST'
-+ **arg**: String for the third element in the url (or undefined if not specified). 
++ **arg**: An array of strings for the elements of the url not used to find the handler function.
 + **params**: is either the url encoded paramiters for GET requests or the posted data for POST requests in a JSON format.
 
 Function should return a json structure to return to the client.
