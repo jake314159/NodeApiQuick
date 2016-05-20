@@ -26,6 +26,17 @@ api.addPackage('p2',
 	}
 );
 
+// 3. A package with auth disabled
+api.addPackage('p3',
+	{
+		'f2': function(method, arg, params) {
+			return {}
+		}
+	}, {
+		'auth': false
+	}
+);
+
 describe('authByJsonFunction()', function () {
 
 	it('Single api key for a user', function (done) {
@@ -119,6 +130,22 @@ describe('checkAuthDetails()', function () {
 		api.checkAuthDetails('p2', 'f2', undefined, {'user': 'user3', 'pass': 'key2'}).should.equal(false);
 		api.checkAuthDetails('p2', 'f2', undefined, {'user': 'user2', 'pass': 'key1'}).should.equal(false);
 		api.checkAuthDetails('p2', 'f2', undefined, {'user': 'user2', 'pass': 'key2'}).should.equal(false);
+		done();
+	});
+
+	it('Disable auth for a specific package with auth=false', function (done) {
+		api.auth(function(){return false;}); // Globally reject
+		api.checkAuthDetails('p1', 'f1', undefined, {'user': 'user3', 'pass': 'key1'}).should.equal(false);
+		api.checkAuthDetails('p1', 'f1', undefined, {'user': 'user3', 'pass': 'key2'}).should.equal(false);
+		api.checkAuthDetails('p1', 'f1', undefined, {'user': 'user2', 'pass': 'key1'}).should.equal(false);
+		api.checkAuthDetails('p1', 'f1', undefined, {'user': 'user2', 'pass': 'key2'}).should.equal(false);
+
+		// Auth siabled for p3
+		api.checkAuthDetails('p3', 'f1', undefined, {'user': 'user3', 'pass': 'key1'}).should.equal(false);
+		api.checkAuthDetails('p3', 'f1', undefined, {'user': 'user3', 'pass': 'key2'}).should.equal(false);
+		api.checkAuthDetails('p3', 'f1', undefined, {'user': 'user2', 'pass': 'key1'}).should.equal(false);
+		api.checkAuthDetails('p3', 'f1', undefined, {'user': 'user2', 'pass': 'key2'}).should.equal(false);
+
 		done();
 	});
 });
