@@ -3,7 +3,10 @@
 ## Unreleased
 
 + Update readme
-+ Code layout & implementation improvements
++ Major code refactor
++ Tests for the full program
++ Disable auth by setting ```auth: false```
++ Fix dependency versions
 
 ## 0.1.2 BETA (2016-05-17)
 
