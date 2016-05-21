@@ -1,6 +1,6 @@
 #NodeApiQuick
 
-Create a simple json based api server supporting both GET and POST requests quickly and easily.
+Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*.
 
 ##Install me
 
@@ -17,8 +17,8 @@ Time for a quick 6 line example! The below code creates an api server that respo
 ```javascript
 var api = require('ApiQuick').init(8080);
 var endpoints = {};
-endpoints.date = function(method, args, params) {
-  return {date: new Date().toUTCString()};
+endpoints.date = function() {
+    return {date: new Date().toUTCString()};
 };
 api.addEndpoints(endpoints);
 ```
@@ -35,25 +35,46 @@ The components of the url that are provided to your function is shown below
 
 Example url:
 ```
-http://127.0.0.1:8080/:package/:function/:arg?:params
+http://127.0.0.1:8080/<:function_route:>/<:args:>?<:params:>
 ```
 
 Maps to the function arguments:
 ```javascript
-function(method, arg, params)
+function(method, args, params)
 ```
 
 + **method**: 'GET' or 'POST'
-+ **arg**: An array of strings for the elements of the url not used to find the handler function.
++ **args**: An array of strings for the elements of the url not used to find the handler function.
 + **params**: is either the url encoded paramiters for GET requests or the posted data for POST requests in a JSON format.
 
-Function should return a json structure to return to the client.
+
+
+
+So for the basic example above the url:
+
+```
+http://127.0.0.1:8080/date/now/utc?format=json
+```
+
+will call the handler function with the following arguments:
+
+```javascript
+{
+  'date': function(method args, params) {
+    console.log(method); // == 'GET'
+    console.log(args); // == ['now', 'utc']
+    console.log(params); // == {'format': 'json'}
+  }
+}
+```
+
+The hander function should return a json structure to return to the client.
 
 ## Basic auth
 
 QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is joined with a ':' between and then encoded with base64. This is then put into the header '*Authorization*'. An example of sending the username and password 'test' with curl is shown below:
 ```
-curl -H "Authorization: Basic dXNlcjpwYXNz" 127.0.0.1:8080/date/now
+curl -H "Authorization: Basic dXNlcjpwYXNz" 127.0.0.1:8080/date
 ```
 
 Google for proper secure uses of Basic auth, it's up to you to do it right. ApiQuick also supports SSL, scroll down for more information.
@@ -65,18 +86,18 @@ The authentication works by you supplying a function that returns either *true* 
 By providing username and password pairs in a json format. This will be applied as a global auth function.
 
 ```javascript
-api.authByJson({'username':'password'});
+api.authByJson({'username': 'password'});
 ```
 
 Multiple password keys can also be supplied for one user with an array.
 
 ```javascript
-api.authByJson({ 'username': ['key1', 'key2'] });
+api.authByJson({'username': ['key1', 'key2']});
 ```
 
 ###Two
 
-By using a global auth function which applies to all packages.
+By using a global auth function which applies to all endpoints.
 
 ```javascript
 api.auth(function(user,pass) {
@@ -86,25 +107,19 @@ api.auth(function(user,pass) {
 
 ###Three
 
-By doing a package specific function (supplied in the extra paramiter)
+By doing an endpoint specific function (supplied in the extra paramiter)
 
 ```javascript
-api.addPackage('date', 
-  {
-    'now': function(method, arg, params) {
-      var currentDate = new Date();
-      return {time:currentDate.toUTCString()};
-    }
-  }, 
-  {
-    'auth':function(){return true;}
+api.addEndpoint(endpoints, {
+  'auth': function(user, pass) {
+    return pass == 'passw0rd';
   }
-);
+});
 ```
 
 
 
-Package specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
+Endpoint specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 
 ## SSL
 

@@ -1,14 +1,15 @@
 # Release history
 
-## Unreleased
+## 0.2.0 BETA (2016-05-21)
 
-+ Update readme
++ Mark *addPackage* as **deprecated**, due to be removed v1.0.0
++ Implement addEndpoints which will replace addPackage
 + Major code refactor
 + Tests for the full program
 + Disable auth by setting ```auth: false```
 + Fix dependency versions
-+ Mark addPackage as deprecated, due to be removed v1.0.0
-+ Implement addEndpoints which will replace addPackage
++ Update readme
+
 
 ## 0.1.2 BETA (2016-05-17)
 
