@@ -31,6 +31,11 @@
     "https": "^1.0.0",
     "secure-compare": "^3.0.1"
   },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "request": "*"
+  },
   "scripts": {
     "test": "bash run_tests.sh"
   },
