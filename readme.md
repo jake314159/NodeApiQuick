@@ -15,7 +15,7 @@ npm install api-quick --save
 Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
 ```javascript
-var api = require('../lib/ApiQuick').init(8080);
+var api = require('ApiQuick').init(8080);
 api.addPackage('date', 
   function(method, arg, params) {
     return {date: new Date().toUTCString()};
