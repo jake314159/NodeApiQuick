@@ -16,15 +16,19 @@
     "quick",
     "https",
     "ssl",
+    "rate limit",
+    "express",
+    "auth",
+    "authentication",
     "POST",
     "GET"
   ],
   "dependencies": {
-    "body-parser": "*",
-    "express": "*",
-    "fs": "*",
-    "http": "*",
-    "https": "*",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "https": "^1.0.0",
     "secure-compare": "^3.0.1"
   },
   "engines": {
