@@ -31,6 +31,9 @@
     "https": "^1.0.0",
     "secure-compare": "^3.0.1"
   },
+  "scripts": {
+    "test": "bash run_tests.sh"
+  },
   "engines": {
     "node": "*"
   }
