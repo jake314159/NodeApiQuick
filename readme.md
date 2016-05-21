@@ -16,11 +16,11 @@ Time for a quick 6 line example! The below code creates an api server that respo
 
 ```javascript
 var api = require('ApiQuick').init(8080);
-api.addPackage('date', 
-  function(method, arg, params) {
-    return {date: new Date().toUTCString()};
-  }
-);
+var endpoints = {};
+endpoints.date = function(method, args, params) {
+  return {date: new Date().toUTCString()};
+};
+api.addEndpoints(endpoints);
 ```
 
 Doing a GET request on the above url will then return the data:
