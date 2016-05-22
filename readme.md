@@ -2,7 +2,7 @@
 [![npm](https://img.shields.io/npm/v/api-quick.svg?maxAge=2592000)](https://www.npmjs.com/package/api-quick)
 [![GitHub issues](https://img.shields.io/github/issues/jake314159/NodeApiQuick.svg)](https://github.com/jake314159/NodeApiQuick/issues)
 [![travis](https://travis-ci.org/jake314159/NodeApiQuick.svg?branch=travis-setup)](https://travis-ci.org/jake314159/NodeApiQuick)
-
+[![travis](https://david-dm.org/jake314159/NodeApiQuick.svg)](https://david-dm.org/)
 
 
 #NodeApiQuick
@@ -180,6 +180,7 @@ api.init(8080, {
 + http
 + https
 + secure-compare
++ events
 
 ## License
 
