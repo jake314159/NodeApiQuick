@@ -165,6 +165,12 @@ api.init(8080, {
 });
 ```
 
+## Other init options
+
+| field      | Description                                               |
+|------------|-----------------------------------------------------------|
+| prettyJson | Pretty print the JSON response                            |
+
 ## Dependencies
 
 + fs
