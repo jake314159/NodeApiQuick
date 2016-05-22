@@ -5,7 +5,8 @@ api.init(8080, {
 	'rateLimit': {
         'period': 300,
         'limit': 30
-    }
+    },
+    consoleLog: 'ERROR'
 })
 
 describe('handleRateLimitHelper()', function () {

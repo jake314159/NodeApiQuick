@@ -167,9 +167,10 @@ api.init(8080, {
 
 ## Other init options
 
-| field      | Description                                               |
-|------------|-----------------------------------------------------------|
-| prettyJson | Pretty print the JSON response                            |
+| Field      | Description                                               | Default |
+|:-----------|:----------------------------------------------------------|---------|
+| prettyJson | Pretty print the JSON response                            | false   |
+| consoleLog | Log all events to the console                             | 'info'  |
 
 ## Dependencies
 

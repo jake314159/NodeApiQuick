@@ -1,7 +1,7 @@
 var should = require('should');
 
 var api = require('../lib/ApiQuick');
-api.init(8080);
+api.init(8080, {consoleLog: 'ERROR'});
 
 // Add some packages we can use to test
 // 1. A package with no auth that will use the global auth function
