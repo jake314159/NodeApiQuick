@@ -1,5 +1,9 @@
 # Release history
 
+## Unreleased
+
++ Support for express compatible middleware
+
 ## 0.2.0 BETA (2016-05-21)
 
 + Mark *addPackage* as **deprecated**, due to be removed v1.0.0

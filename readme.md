@@ -67,7 +67,7 @@ will call the handler function with the following arguments:
 
 ```javascript
 {
-  'date': function(method args, params) {
+  'date': function(method, args, params) {
     console.log(method); // == 'GET'
     console.log(args); // == ['now', 'utc']
     console.log(params); // == {'format': 'json'}
