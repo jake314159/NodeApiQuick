@@ -5,7 +5,8 @@
 [![travis](https://david-dm.org/jake314159/NodeApiQuick.svg)](https://david-dm.org/)
 
 
-#NodeApiQuick
+---------------------------
+
 
 Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*.
 
@@ -165,12 +166,12 @@ api.init(8080, {
 });
 ```
 
-## Other init options
+##Initialisation options
 
 | Field      | Description                                               | Default |
 |:-----------|:----------------------------------------------------------|---------|
 | prettyJson | Pretty print the JSON response                            | false   |
-| consoleLog | Log all events to the console                             | 'info'  |
+| consoleLog | Log events to the console                                 | 'info'  |
 
 ## Dependencies
 

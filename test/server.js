@@ -4,6 +4,7 @@ var request = require('request');
 
 var api = require('../lib/ApiQuick');
 api.init(8086, {consoleLog: 'ERROR'});
+//api.init(8086);
 
 var url_base = 'http://127.0.0.1:8086/'
 
@@ -60,6 +61,7 @@ describe('Server tests', function () {
 		);
 		var count = 0;
 		var num = 100;
+		var start = new Date() * 1;
 		for(var i=0; i<num; i++) {
 			request(url_base + p, function (error, response, body) {
 				should.not.exist(error);
@@ -72,6 +74,10 @@ describe('Server tests', function () {
 				body.r.should.equal('abc123');
 				count++;
 				if(count >= num) {
+					// TODO: Why is our connection reset for >~250 requests
+					var end = new Date() * 1;
+					console.log(end-start, ' ms');
+					console.log(num*1000/(end-start), ' req/s')
 					done();	
 				}
 			});
@@ -207,6 +213,30 @@ describe('Server tests', function () {
 			api.auth(false);
 			done();
 		});
+	});
+
+	it('Echo back GET params', function (done) {
+		var p = 'package1';
+		api.addPackage(p,
+			function(method, arg, params) {
+				return params;
+			}
+		);
+
+		request(url_base + p + '?a=1&b=2', function (error, response, body) {
+			should.not.exist(error);
+			should.exist(response);
+			should.exist(response.statusCode);
+			response.statusCode.should.equal(200);
+			should.exist(body);
+			body = JSON.parse(body);
+
+			should.exist(body.a, 'No "a" response in body');
+			body.a.should.equal('1');
+			should.exist(body.b, 'No "b" response in body');
+			body.b.should.equal('2');
+			done();
+		})
 	});
 
 });
