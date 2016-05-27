@@ -1,3 +1,8 @@
+# Node api-quick
+
+
+Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*.
+
 
 [![npm](https://img.shields.io/npm/v/api-quick.svg?maxAge=2592000)](https://www.npmjs.com/package/api-quick)
 [![GitHub issues](https://img.shields.io/github/issues/jake314159/NodeApiQuick.svg)](https://github.com/jake314159/NodeApiQuick/issues)
@@ -5,10 +10,6 @@
 [![travis](https://david-dm.org/jake314159/NodeApiQuick.svg)](https://david-dm.org/)
 
 
----------------------------
-
-
-Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*.
 
 ##Install me
 
@@ -176,12 +177,11 @@ api.init(8080, {
 ## Dependencies
 
 + fs
-+ express
-+ body-parser
 + http
 + https
 + secure-compare
 + events
++ url
 
 ## License
 

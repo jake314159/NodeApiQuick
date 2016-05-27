@@ -3,7 +3,7 @@ var should = require('should');
 var request = require('request');
 
 var api = require('../lib/ApiQuick');
-api.init(8086, {consoleLog: 'ERROR'});
+api.init(8086, {consoleLog: 'ERROR', maxDepth: 2});
 //api.init(8086);
 
 var url_base = 'http://127.0.0.1:8086/'
@@ -111,11 +111,11 @@ describe('Server tests', function () {
 			should.not.exist(error);
 			should.exist(response);
 			should.exist(response.statusCode);
-			response.statusCode.should.equal(405);
+			response.statusCode.should.equal(404);
 			should.exist(body);
 			body = JSON.parse(body);
 			should.exist(body.code);
-			body.code.should.equal(405);
+			body.code.should.equal(404);
 			done();
 		})
 	});
@@ -216,7 +216,7 @@ describe('Server tests', function () {
 	});
 
 	it('Echo back GET params', function (done) {
-		var p = 'package1';
+		var p = 'package9';
 		api.addPackage(p,
 			function(method, arg, params) {
 				return params;
@@ -235,6 +235,30 @@ describe('Server tests', function () {
 			body.a.should.equal('1');
 			should.exist(body.b, 'No "b" response in body');
 			body.b.should.equal('2');
+			done();
+		})
+	});
+
+	it('Echo back POST params', function (done) {
+		var p = 'package10';
+		api.addPackage(p,
+			function(method, arg, params) {
+				return params;
+			}
+		);
+
+		request.post({url: url_base + p, form:{'a': '3', 'b': '4'}}, function (error, response, body) {
+			should.not.exist(error);
+			should.exist(response);
+			should.exist(response.statusCode);
+			response.statusCode.should.equal(200);
+			should.exist(body);
+			body = JSON.parse(body);
+
+			should.exist(body.a, 'No "a" response in body');
+			body.a.should.equal('3');
+			should.exist(body.b, 'No "b" response in body');
+			body.b.should.equal('4');
 			done();
 		})
 	});
