@@ -1,12 +1,9 @@
-var api = require('../lib/ApiQuick');
-api.init(8080);
-api.addPackage('date', 
-	{
-		'now': function(method, arg, params) {
-			var currentDate = new Date();
-			return {time:currentDate.toUTCString()};
-		}
-	}, 
+var api = require('../lib/ApiQuick').init(8080);
+var endpoints = {};
+endpoints.date = function(req, cb) {
+	cb(null, {date: new Date().toUTCString()});
+};
+api.addEndpoints(endpoints,
 	{
 		'auth':function(){return true;}
 	}

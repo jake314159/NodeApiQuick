@@ -5,11 +5,9 @@ api.init(8080,{
 			'cert':'./cert.pem'
 		}
 });
-api.addPackage('date', 
-	{
-		'now': function(method, arg, params) {
-			var currentDate = new Date();
-			return {time:currentDate.toUTCString()};
-		}
-	}
-);
+
+var endpoints = {};
+endpoints.date = function(req, cb) {
+	cb(null, {date: new Date().toUTCString()});
+};
+api.addEndpoints(endpoints);

@@ -7,8 +7,8 @@ api.init(8080, {consoleLog: 'ERROR'});
 // 1. A package with no auth that will use the global auth function
 api.addPackage('p1', 
 	{
-		'f1': function(method, arg, params) {
-			return {}
+		'f1': function(req, cb) {
+			cb(null, {});
 		}
 	}
 );
@@ -16,8 +16,8 @@ api.addPackage('p1',
 // 2. A package with it's own auth function
 api.addPackage('p2', 
 	{
-		'f2': function(method, arg, params) {
-			return {}
+		'f2': function(req, cb) {
+			cb(null, {});
 		}
 	}, {
 		'auth': function(user, pass) {
@@ -29,8 +29,8 @@ api.addPackage('p2',
 // 3. A package with auth disabled
 api.addPackage('p3',
 	{
-		'f2': function(method, arg, params) {
-			return {}
+		'f2': function(req, cb) {
+			cb(null, {});
 		}
 	}, {
 		'auth': false

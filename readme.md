@@ -24,10 +24,10 @@ npm install api-quick --save
 Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
 ```javascript
-var api = require('ApiQuick').init(8080);
+var api = require('../lib/ApiQuick').init(8080);
 var endpoints = {};
-endpoints.date = function() {
-    return {date: new Date().toUTCString()};
+endpoints.date = function(req, cb) {
+	cb(null, {date: new Date().toUTCString()});
 };
 api.addEndpoints(endpoints);
 ```
@@ -49,12 +49,12 @@ http://127.0.0.1:8080/<:function_route:>/<:args:>?<:params:>
 
 Maps to the function arguments:
 ```javascript
-function(method, args, params)
+function(req, callback)
 ```
 
-+ **method**: 'GET' or 'POST'
-+ **args**: An array of strings for the elements of the url not used to find the handler function.
-+ **params**: is either the url encoded paramiters for GET requests or the posted data for POST requests in a JSON format.
++ **req.method**: 'GET' or 'POST'
++ **req.args**: An array of strings for the elements of the url not used to find the handler function.
++ **req.body**: is either the url encoded parameters for GET requests or the posted data for POST requests in a JSON format.
 
 
 
@@ -69,10 +69,10 @@ will call the handler function with the following arguments:
 
 ```javascript
 {
-  'date': function(method, args, params) {
-    console.log(method); // == 'GET'
-    console.log(args); // == ['now', 'utc']
-    console.log(params); // == {'format': 'json'}
+  'date': function(req, cb) {
+    console.log(req.method); // == 'GET'
+    console.log(req.args); // == ['now', 'utc']
+    console.log(req.body); // == {'format': 'json'}
   }
 }
 ```
