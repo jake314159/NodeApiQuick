@@ -1,5 +1,6 @@
 var should = require('should');
 
+var auth = require('../lib/auth');
 var api = require('../lib/ApiQuick');
 api.init(8080, {consoleLog: 'ERROR'});
 
@@ -155,7 +156,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('Simple basic auth (capital B)', function (done) {
 		var input = 'Basic dXNlcjE6a2V5MQ==';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.exist(data.user);
@@ -167,7 +168,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('Simple basic auth (lower b)', function (done) {
 		var input = 'basic dXNlcjE6a2V5MQ==';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.exist(data.user);
@@ -179,7 +180,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('Long username and password', function (done) {
 		var input = 'basic YV92ZXJ5X3ZlcnlfbG9uZ191c2VybmFtZV90aGF0X2Rqc2FrbGRqc2Fsa2RqaW9zamRpb2FmZHNpZmhkaXN1aGZ1aXNkYWhmaXVkc2hmaXVkaHNhaXVmaGRzdWloZml1ZHNhaGZzaXVzamRvaWpzYWlvZGpzYWlvOmFuZF9hX3ZlcnlfdmVyeV9sb25nX3Bhc3N3b3JkX2Zkb2lzZmpkc29pZmppb2RzamZkc2prZmlzZGZoaXVhaGZpdWhzZGl1ZmhkaXVzaGZpdWRzaGZ1aXNoYWlmaW9zZGppb2o=';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		var user = 'a_very_very_long_username_that_djsakldjsalkdjiosjdioafdsifhdisuhfuisdahfiudshfiudhsaiufhdsuihfiudsahfsiusjdoijsaiodjsaio';
 		var pass = 'and_a_very_very_long_password_fdoisfjdsoifjiodsjfdsjkfisdfhiuahfiuhsdiufhdiushfiudshfuishaifiosdjioj';
@@ -194,7 +195,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('Without a :', function (done) {
 		var input = 'basic dXNlcl93aXRob3V0X2tleQ==';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.not.exist(data.user);
@@ -204,7 +205,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('No base64', function (done) {
 		var input = 'basic ';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.not.exist(data.user);
@@ -214,7 +215,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('Invalid base64', function (done) {
 		var input = 'basic <><><>';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.not.exist(data.user);
@@ -224,7 +225,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('Empty string input', function (done) {
 		var input = '';
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.not.exist(data.user);
@@ -234,7 +235,7 @@ describe('decodeAuthDetails()', function () {
 
 	it('undefined input', function (done) {
 		var input = undefined;
-		var data = api.decodeAuthDetails(input);
+		var data = auth.decodeAuthDetails(input);
 
 		should.exist(data);
 		should.not.exist(data.user);
