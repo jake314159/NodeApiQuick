@@ -41,7 +41,7 @@ api.addPackage('p3',
 describe('authByJsonFunction()', function () {
 
 	it('Single api key for a user', function (done) {
-		var checkFunction = api.authByJsonFunction({
+		var checkFunction = auth.authByJsonFunction({
 			'user': 'key843298'
 		});
 
@@ -53,7 +53,7 @@ describe('authByJsonFunction()', function () {
 	});
 
 	it('Multiple api keys for a user', function (done) {
-		var checkFunction = api.authByJsonFunction({
+		var checkFunction = auth.authByJsonFunction({
 			'user': ['key1', 'key2']
 		});
 
@@ -67,7 +67,7 @@ describe('authByJsonFunction()', function () {
 	});
 
 	it('Multiple users', function (done) {
-		var checkFunction = api.authByJsonFunction({
+		var checkFunction = auth.authByJsonFunction({
 			'user1': ['key1'],
 			'user2': ['key2']
 		});
@@ -93,7 +93,7 @@ describe('authByJsonFunction()', function () {
 	});
 
 	it('No users', function (done) {
-		var checkFunction = api.authByJsonFunction({});
+		var checkFunction = auth.authByJsonFunction({});
 
 		should.exist(checkFunction);
 
@@ -103,7 +103,7 @@ describe('authByJsonFunction()', function () {
 	});
 
 	it('Undefined credentials', function (done) {
-		var checkFunction = api.authByJsonFunction();
+		var checkFunction = auth.authByJsonFunction();
 
 		should.exist(checkFunction);
 
