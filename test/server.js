@@ -232,4 +232,26 @@ describe('Server tests', function () {
 		})
 	});
 
+	it('Specify return code in callback', function (done) {
+		api.addEndpoints({
+			'package11': function(req, cb) {
+				cb(null, {'r': 'abc123', 'code': 200}, {code: 404});
+			}
+		});
+
+		request(url_base + 'package11', function (error, response, body) {
+			should.not.exist(error);
+			should.exist(response);
+			should.exist(response.statusCode);
+			response.statusCode.should.equal(404);
+			should.exist(body);
+			body = JSON.parse(body);
+			should.exist(body.code, 'No response in body');
+			body.code.should.equal(200);
+			should.exist(body.r, 'No response in body');
+			body.r.should.equal('abc123');
+			done();
+		})
+	});
+
 });

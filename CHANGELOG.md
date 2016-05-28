@@ -2,7 +2,15 @@
 
 ## Unreleased
 
++ Handlers return asynchronously **(BREAKING)**
++ Only allow 1 argument by default **(BREAKING)**
 + Support for express compatible middleware
++ Gzip compression support
++ Pretty json output
++ Removed dependency on express
++ Infinite depth endpoint urls
++ Improved log event system
++ Logs to standard out by default
 
 ## 0.2.0 BETA (2016-05-21)
 

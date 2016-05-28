@@ -164,8 +164,6 @@ api.addEndpoint(endpoints, {
 });
 ```
 
-
-
 Endpoint specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 
 
@@ -176,6 +174,7 @@ Endpoint specific auth functions are used if present and if not then the global 
 | prettyJson | Pretty print the JSON response                            | false   |
 | consoleLog | Log events to the console                                 | 'info'  |
 | compress   | Compress connections with gzip                            | false   |
+| maxDepth   | Maximum number of arguments to allow                      | 1       |
 
 ## Dependencies
 
