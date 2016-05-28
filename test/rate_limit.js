@@ -17,7 +17,7 @@ api.init(8080, {
 
 describe('handleRateLimitHelper()', function () {
 	it('Should let through normal requests', function (done) {
-		api.ratelimit.rateLimitStore = {};
+		api.rateLimit.rateLimitStore = {};
 
 		var ip = '127.0.0.1';
 
@@ -31,7 +31,7 @@ describe('handleRateLimitHelper()', function () {
 	});
 
 	it('Should block if go over the limit', function (done) {
-		api.ratelimit.rateLimitStore = {};
+		api.rateLimit.rateLimitStore = {};
 
 		var ip = '127.0.0.1';
 
@@ -50,22 +50,22 @@ describe('handleRateLimitHelper()', function () {
 
 	it('Should clear rate limit dict after time reached', function (done) {
 		// Store a old record that should be removed later
-		api.ratelimit.rateLimitStore = {
+		api.rateLimit.rateLimitStore = {
 			'clear': 1
 		};
 
 		var now = Math.floor(Date.now() / 1000);
-		api.ratelimit.periodStart = now - api.ratelimit.period - 1;
+		api.rateLimit.periodStart = now - api.rateLimit.period - 1;
 
 		var ip = '127.0.0.1';
 
-		should.exist(api.ratelimit.rateLimitStore['clear']);
+		should.exist(api.rateLimit.rateLimitStore['clear']);
 		var data = api.handleRateLimitHelper(ip);
 		should.exist(data);
 		data.should.equal(true);
 
 		// The existing rate record should have been removed as it is old now
-		should.not.exist(api.ratelimit.rateLimitStore['clear']);
+		should.not.exist(api.rateLimit.rateLimitStore['clear']);
 
 		done();
 	});

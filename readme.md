@@ -79,6 +79,44 @@ will call the handler function with the following arguments:
 
 The hander function should return a json structure to return to the client.
 
+## SSL
+
+First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate and [this](http://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/) is good for doing it with your own root CA. You could also use [LetsEncrypt](https://letsencrypt.org/) to create and sign your certificates for free. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
+
+To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
+
+```javascript
+var api = require('ApiQuick');
+api.init(8080,{
+    'ssl': {
+        'key':'./key.pem',
+        'cert':'./cert.pem'
+    }
+});
+```
+
+## Rate limits
+
+Also included is some basic rate limit functionality, disabled by default. There are two ways of doing this...
+
+Using the default values:
+
+```javascript
+api.init(8080, {'rateLimit':true});
+```
+
+or using your own custom values:
+
+```javascript
+api.init(8080, {
+    'rateLimit': {
+        'period': 60, //Seconds
+        'limit': 60
+    }
+});
+```
+
+
 ## Basic auth
 
 QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is joined with a ':' between and then encoded with base64. This is then put into the header '*Authorization*'. An example of sending the username and password 'test' with curl is shown below:
@@ -130,42 +168,6 @@ api.addEndpoint(endpoints, {
 
 Endpoint specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 
-## SSL
-
-First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate and [this](http://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/) is good for doing it with your own root CA. You could also use [LetsEncrypt](https://letsencrypt.org/) to create and sign your certificates for free. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
-
-To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
-
-```javascript
-var api = require('ApiQuick');
-api.init(8080,{
-    'ssl': {
-        'key':'./key.pem',
-        'cert':'./cert.pem'
-    }
-});
-```
-
-## Rate limits
-
-Also included is some basic rate limit functionality, disabled by default. There are two ways of doing this...
-
-Using the default values:
-
-```javascript
-api.init(8080, {'rateLimit':true});
-```
-
-or using your own custom values:
-
-```javascript
-api.init(8080, {
-    'rateLimit': {
-        'period': 60, //Seconds
-        'limit': 60
-    }
-});
-```
 
 ##Initialisation options
 
@@ -173,6 +175,7 @@ api.init(8080, {
 |:-----------|:----------------------------------------------------------|---------|
 | prettyJson | Pretty print the JSON response                            | false   |
 | consoleLog | Log events to the console                                 | 'info'  |
+| compress   | Compress connections with gzip                            | false   |
 
 ## Dependencies
 
@@ -182,6 +185,7 @@ api.init(8080, {
 + secure-compare
 + events
 + url
++ compression
 
 ## License
 
