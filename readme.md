@@ -26,8 +26,8 @@ Time for a quick 6 line example! The below code creates an api server that respo
 ```javascript
 var api = require('../lib/ApiQuick').init(8080);
 var endpoints = {};
-endpoints.date = function(req, cb) {
-	cb(null, {date: new Date().toUTCString()});
+endpoints.date = function() {
+  return {date: new Date().toUTCString()};
 };
 api.addEndpoints(endpoints);
 ```
