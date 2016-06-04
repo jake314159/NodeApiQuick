@@ -144,7 +144,7 @@ describe('Server tests', function () {
 				cb(null, {'r': 'abc123'});
 			}
 		);
-		api.auth(function() {return false;});
+		api.auth(function(u, p, cb) {return cb(false);});
 
 		request(url_base + p, function (error, response, body) {
 			should.not.exist(error);
@@ -160,13 +160,61 @@ describe('Server tests', function () {
 		});
 	});
 
+	it('Fail global JSON auth', function (done) {
+		var p = 'package7-2';
+		api.addPackage(p,
+			function(req, cb) {
+				cb(null, {'r': 'abc123'});
+			}
+		);
+		api.authByJson({'user': 'key'});
+
+		request(url_base + p, function (error, response, body) {
+			should.not.exist(error);
+			should.exist(response);
+			should.exist(response.statusCode);
+			response.statusCode.should.equal(401);
+			should.exist(body);
+			body = JSON.parse(body);
+			should.exist(body.code);
+			body.code.should.equal(401);
+			api.auth(false);
+			done();
+		});
+	});
+
+	it('Success global JSON auth', function (done) {
+		var p = 'package7-2';
+		api.addPackage(p,
+			function(req, cb) {
+				cb(null, {'r': 'abc123'});
+			}
+		);
+		api.authByJson({'user': 'key'});
+
+		request(url_base + p, {
+			'headers': {'authorization': 'Basic dXNlcjprZXk='}
+		}, function (error, response, body) {
+			should.not.exist(error);
+			should.exist(response);
+			should.exist(response.statusCode);
+			response.statusCode.should.equal(200);
+			should.exist(body);
+			body = JSON.parse(body);
+			should.exist(body.r);
+			body.r.should.equal('abc123');
+			api.auth(false);
+			done();
+		});
+	});
+
 	it('Fail package auth', function (done) {
 		var p = 'package8';
 		api.addPackage(p,
 			function(req, cb) {
 				cb(null, {'r': 'abc123'});
 			}, {
-				'auth' : function() {return false;}
+				'auth' : function(u, p, cb) {return cb(false);}
 			}
 		);
 

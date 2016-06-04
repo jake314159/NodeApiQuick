@@ -147,8 +147,8 @@ api.authByJson({'username': ['key1', 'key2']});
 By using a global auth function which applies to all endpoints.
 
 ```javascript
-api.auth(function(user,pass) {
-  return pass=='test';
+api.auth(function(user, pass, callback) {
+  callback(pass=='test');
 });
 ```
 
@@ -158,8 +158,8 @@ By doing an endpoint specific function (supplied in the extra paramiter)
 
 ```javascript
 api.addEndpoint(endpoints, {
-  'auth': function(user, pass) {
-    return pass == 'passw0rd';
+  'auth': function(user, pass, callback) {
+    callback(pass == 'passw0rd');
   }
 });
 ```

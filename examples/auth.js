@@ -5,12 +5,12 @@ endpoints.date = function(req, cb) {
 };
 api.addEndpoints(endpoints,
 	{
-		'auth':function(){return true;}
+		'auth':function(user, key, cb){cb(true);}
 	}
 );
 
 // Auth example using curl ("user:pass")
 // curl -H "Authorization: dXNlcjpwYXNz" 127.0.0.1:8080/date/now
-api.auth(function(user,pass) {
-	return pass=='pass';
+api.auth(function(user,pass, cb) {
+	cb(pass=='pass');
 });

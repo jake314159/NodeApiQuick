@@ -3,6 +3,7 @@
 ## Unreleased
 
 + Option for handler to return asynchronously if it takes a callback (but will behave as before if not) **(BREAKING)**
++ Authentication functions run asynchronously via a callback **(BREAKING)**
 + Only allow 1 argument by default **(BREAKING)**
 + Handlers function given a single object with all the request details **(BREAKING)**
 + Support for express compatible middleware
