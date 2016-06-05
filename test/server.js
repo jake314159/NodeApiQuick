@@ -3,8 +3,9 @@ var should = require('should');
 var request = require('request');
 
 var api = require('../lib/ApiQuick');
-api.init(8086, {consoleLog: 'ERROR', maxDepth: 2});
+api.init(8086, {consoleLog: api.error, maxDepth: 2});
 //api.init(8086);
+
 
 var url_base = 'http://127.0.0.1:8086/'
 

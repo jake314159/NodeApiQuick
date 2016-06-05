@@ -175,6 +175,7 @@ Endpoint specific auth functions are used if present and if not then the global 
 | consoleLog | Log events to the console                                 | 'info'  |
 | compress   | Compress connections with gzip                            | false   |
 | maxDepth   | Maximum number of arguments to allow                      | 1       |
+| debug      | Include extra error information in responses              | false   |
 
 ## Dependencies
 
