@@ -1,8 +1,8 @@
 {
   "author": "Jake Causon",
   "name": "api-quick",
-  "description": "Create a simple api quick and easy",
-  "version": "0.2.0",
+  "description": "Build a simple JSON API quickly and easily",
+  "version": "0.3.0",
   "repository": {
     "url": "https://github.com/jake314159/NodeApiQuick"
   },
@@ -13,15 +13,23 @@
   "main": "./lib/ApiQuick.js",
   "keywords": [
     "api",
+    "server",
     "quick",
     "https",
+    "http",
     "ssl",
     "rate limit",
     "express",
+    "middleware",
+    "basic",
+    "basicauth"
     "auth",
     "authentication",
     "POST",
-    "GET"
+    "GET",
+    "PATCH",
+    "DELETE",
+    "PUT"
   ],
   "dependencies": {
     "body-parser": "^1.15.1",

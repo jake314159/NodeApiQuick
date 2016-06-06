@@ -171,11 +171,13 @@ Endpoint specific auth functions are used if present and if not then the global 
 
 | Field      | Description                                               | Default |
 |:-----------|:----------------------------------------------------------|---------|
+| SSL        | Specifies SSL encryption settings (see above)             | false   |
+| rateLimit  | Specifies rate limit settings (see above)                 | false   |
 | prettyJson | Pretty print the JSON response                            | false   |
 | consoleLog | Log events to the console                                 | 'info'  |
 | compress   | Compress connections with gzip                            | false   |
 | maxDepth   | Maximum number of arguments to allow                      | 1       |
-| debug      | Include extra error information in responses              | false   |
+| debug      | Include extra error error information in responses        | false   |
 
 ## Dependencies
 
