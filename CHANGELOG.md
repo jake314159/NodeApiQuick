@@ -1,6 +1,6 @@
 # Release history
 
-## Unreleased
+## 0.3.0 BETA (2016-06-06)
 
 + Option for handler to return asynchronously if it takes a callback (but will behave as before if not) **(BREAKING)**
 + Authentication functions run asynchronously via a callback **(BREAKING)**
