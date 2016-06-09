@@ -22,7 +22,7 @@
     "express",
     "middleware",
     "basic",
-    "basicauth",
+    "basic auth",
     "auth",
     "authentication",
     "POST",
