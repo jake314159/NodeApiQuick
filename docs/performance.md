@@ -1,7 +1,7 @@
 
 # Method
 
-All rate limits were tested on a single $5 [Digital Ocean] VM with the following specifications:
+All rate limits were tested on a single $5 [Digital Ocean](https://www.digitalocean.com/) VM with the following specifications:
 
 ```
 RAM:    512 MB
@@ -22,16 +22,16 @@ endpoints.ping = function() {
 api.addEndpoints(endpoints);
 ```
 
-To test the maximim capacity of the api server a second VM of the same specifications (and in the same region) used ```httperf``` to test the maximum capcity of the server. The exact command run is shown with the results.
+To test the maximum capacity of the api server a second VM of the same specifications (and in the same region) used ```httperf``` to test the maximum capacity of the server. The exact command run is shown with the results.
 
 # Results (v0.3.0)
 
-## 200 simultanious connections
+## 200 simultaneous connections
 
 **2209 replies/sec**
 
 ```
-httperf --server=46.101.10.236 uri=/pong --port=8080 --num-conn 200 --num-call=150
+httperf --server=<ADDRESS> uri=/pong --port=8080 --num-conn 200 --num-call=150
 ```
 
 ```
@@ -44,12 +44,12 @@ Connection length [replies/conn]: 150.000
 Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
 ```
 
-## 2000 simultanious connections
+## 2000 simultaneous connections
 
 **1830 replies/sec**
 
 ```
-httperf --server=46.101.10.236 uri=/pong --port=8080 --num-conn 2000 --num-call=10
+httperf --server=<ADDRESS> uri=/pong --port=8080 --num-conn 2000 --num-call=10
 ```
 
 ```
