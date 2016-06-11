@@ -24,7 +24,7 @@ npm install api-quick --save
 Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
 ```javascript
-var api = require('../lib/ApiQuick').init(8080);
+var api = require('ApiQuick').init(8080);
 var endpoints = {};
 endpoints.date = function() {
   return {date: new Date().toUTCString()};
@@ -89,8 +89,8 @@ To use ssl simply give the paths to the key and cert in the extra data as shown 
 var api = require('ApiQuick');
 api.init(8080,{
     'ssl': {
-        'key':'./key.pem',
-        'cert':'./cert.pem'
+        'key': './key.pem',
+        'cert': './cert.pem'
     }
 });
 ```
@@ -102,7 +102,7 @@ Also included is some basic rate limit functionality, disabled by default. There
 Using the default values:
 
 ```javascript
-api.init(8080, {'rateLimit':true});
+api.init(8080, {'rateLimit': true});
 ```
 
 or using your own custom values:
@@ -148,7 +148,7 @@ By using a global auth function which applies to all endpoints.
 
 ```javascript
 api.auth(function(user, pass, callback) {
-  callback(pass=='test');
+  callback(pass == 'test');
 });
 ```
 
@@ -173,11 +173,12 @@ Endpoint specific auth functions are used if present and if not then the global 
 |:-----------|:----------------------------------------------------------|---------|
 | SSL        | Specifies SSL encryption settings (see above)             | false   |
 | rateLimit  | Specifies rate limit settings (see above)                 | false   |
-| prettyJson | Pretty print the JSON response                            | false   |
-| consoleLog | Log events to the console                                 | 'info'  |
-| compress   | Compress connections with gzip                            | false   |
-| maxDepth   | Maximum number of arguments to allow                      | 1       |
+| prettyJson | Pretty print the JSON response data                       | false   |
+| consoleLog | Log events to standard out for debugging                  | 'info'  |
+| compress   | Compress all connections with gzip                        | false   |
+| maxDepth   | Maximum number of url arguments to allow                  | 1       |
 | debug      | Include extra error error information in responses        | false   |
+| fullRequest| Include all the request information avalible              | false   |
 
 ## Dependencies
 

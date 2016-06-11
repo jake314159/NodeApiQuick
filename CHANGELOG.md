@@ -1,5 +1,9 @@
 # Release history
 
+## Unreleased
++ Expose client IP address in request data
++ Option to pass all request information to the handler
+
 ## 0.3.0 BETA (2016-06-06)
 
 + Option for handler to return asynchronously if it takes a callback (but will behave as before if not) **(BREAKING)**
