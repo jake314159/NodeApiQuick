@@ -1,7 +1,7 @@
 # Node api-quick
 
 
-Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*.
+Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*. Capable of handling up to 2200 requests/sec on a single core ([more info](docs/performance.md)).
 
 
 [![npm](https://img.shields.io/npm/v/api-quick.svg?maxAge=2592000)](https://www.npmjs.com/package/api-quick)
@@ -24,7 +24,7 @@ npm install api-quick --save
 Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
 ```javascript
-var api = require('ApiQuick').init(8080);
+var api = require('api-quick').init(8080);
 var endpoints = {};
 endpoints.date = function() {
   return {date: new Date().toUTCString()};
@@ -86,7 +86,7 @@ First you need to generate a key and certificate. Click [here](http://docs.nodej
 To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
 
 ```javascript
-var api = require('ApiQuick');
+var api = require('api-quick');
 api.init(8080,{
     'ssl': {
         'key': './key.pem',
@@ -178,7 +178,7 @@ Endpoint specific auth functions are used if present and if not then the global 
 | compress   | Compress all connections with gzip                        | false   |
 | maxDepth   | Maximum number of url arguments to allow                  | 1       |
 | debug      | Include extra error error information in responses        | false   |
-| fullRequest| Include all the request information avalible              | false   |
+| fullRequest| Include all the request information avalible              | fales   |
 
 ## Dependencies
 
