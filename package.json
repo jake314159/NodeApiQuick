@@ -2,7 +2,7 @@
   "author": "Jake Causon",
   "name": "api-quick",
   "description": "Build a simple JSON API quickly and easily",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": {
     "url": "https://github.com/jake314159/NodeApiQuick"
   },

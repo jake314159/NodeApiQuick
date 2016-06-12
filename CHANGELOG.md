@@ -1,8 +1,11 @@
 # Release history
 
-## Unreleased
+## v0.3.1 (2016-06-12)
+
++ Fixup error in README
 + Expose client IP address in request data
 + Option to pass all request information to the handler
++ Performance benchmark conducted and details included in ```docs/performance.md```
 
 ## 0.3.0 BETA (2016-06-06)
 
