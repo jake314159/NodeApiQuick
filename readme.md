@@ -1,7 +1,7 @@
 # Node api-quick
 
 
-Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*. Capable of handling up to 2200 requests/sec on a single core ([more info](docs/performance.md)).
+Create a simple JSON based API server in as little as 6 lines with built in support for *SSL*, *Basic auth* & *rate limiting*. Capable of handling up to **2200 requests/sec** on a single core ([more info](docs/performance.md)).
 
 
 [![npm](https://img.shields.io/npm/v/api-quick.svg?maxAge=2592000)](https://www.npmjs.com/package/api-quick)
@@ -178,7 +178,7 @@ Endpoint specific auth functions are used if present and if not then the global 
 | compress   | Compress all connections with gzip                        | false   |
 | maxDepth   | Maximum number of url arguments to allow                  | 1       |
 | debug      | Include extra error error information in responses        | false   |
-| fullRequest| Include all the request information avalible              | fales   |
+| fullRequest| Include all the request information avalible              | false   |
 
 ## Dependencies
 

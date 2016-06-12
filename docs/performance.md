@@ -31,7 +31,7 @@ To test the maximum capacity of the api server a second VM of the same specifica
 **2209 replies/sec**
 
 ```
-httperf --server=<ADDRESS> uri=/pong --port=8080 --num-conn 200 --num-call=150
+httperf --server=<ADDRESS> uri=/ping --port=8080 --num-conn 200 --num-call=150
 ```
 
 ```
@@ -49,7 +49,7 @@ Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
 **1830 replies/sec**
 
 ```
-httperf --server=<ADDRESS> uri=/pong --port=8080 --num-conn 2000 --num-call=10
+httperf --server=<ADDRESS> uri=/ping --port=8080 --num-conn 2000 --num-call=10
 ```
 
 ```
