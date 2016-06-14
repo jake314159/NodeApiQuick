@@ -72,7 +72,7 @@ GET http://127.0.0.1:8080/date/iso
 
 ## Parameters
 
-Another way of allowing different date formats might be to be specified might be my using url parameters, fpr example:
+Another way of allowing different date formats might be to be specified might be my using url parameters, for example:
 
 ```javascript
 var api = require('api-quick').init(8080);
@@ -114,7 +114,7 @@ endpoints.date = function(req, callback) {
 api.addEndpoints(endpoints);
 ```
 
-Note that the first argument is an optional Error object, the second is the data to return and the first is an optional Object containing extra information about the response.
+Note that the first argument to the callback is an optional Error object and the second is the data to return.
 
 ## URL Layout
 
@@ -159,9 +159,7 @@ The hander function should return a json structure to return to the client.
 
 ## SSL
 
-First you need to generate a key and certificate. Click [here](http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server) for instructions on how to make a self-signed certificate and [this](http://datacenteroverlords.com/2012/03/01/creating-your-own-ssl-certificate-authority/) is good for doing it with your own root CA. You could also use [LetsEncrypt](https://letsencrypt.org/) to create and sign your certificates for free. Go google about SSL if you don't know what this means. You may want to get your ssl certificate signed by a CA. This would make sense for production but consider if it's needed. Self-signing and adding your personal certificate to each device may be a better idea, especially if you are the only one using the api.
-
-To use ssl simply give the paths to the key and cert in the extra data as shown below. Note the standard port for ssl is 443 NOT 80 so set that appropriately. You might also need to add '*https://*' to the url you use, when using ssl the api will NOT accept non secure connections.
+To use SSL simply give the paths to the key and certificate files in the initialisation data.
 
 ```javascript
 var api = require('api-quick');
@@ -197,14 +195,12 @@ api.init(8080, {
 
 ## Basic auth
 
-QuickApi uses basic auth because it is simple and secure (if handled correctly). Just a quick overview of basic auth, the username and password is joined with a ':' between and then encoded with base64. This is then put into the header '*Authorization*'. An example of sending the username and password 'test' with curl is shown below:
+ApiQuick supports basic auth which is where a username and password is encoded with base64 and put into the '*Authorization*' header. An example of sending the username and password 'test' with curl is shown below:
 ```
 curl -H "Authorization: Basic dXNlcjpwYXNz" 127.0.0.1:8080/date
 ```
 
-Google for proper secure uses of Basic auth, it's up to you to do it right. ApiQuick also supports SSL, scroll down for more information.
-
-The authentication works by you supplying a function that returns either *true* or *false* indicating if the username and password is valid. There are a few methods of doing auth with ApiQuick.
+The authentication works by running an authentication function that returns (via a callback) either *true* or *false* indicating if the username and password given is valid. There are a few method of doing this.
 
 ###One
 
@@ -235,7 +231,7 @@ api.auth(function(user, pass, callback) {
 By doing an endpoint specific function (supplied in the extra paramiter)
 
 ```javascript
-api.addEndpoint(endpoints, {
+api.addEndpoints(endpoints, {
   'auth': function(user, pass, callback) {
     callback(pass == 'passw0rd');
   }
