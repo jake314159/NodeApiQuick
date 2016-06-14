@@ -19,7 +19,7 @@ Install using [npm](https://www.npmjs.com/package/api-quick) with the command
 npm install api-quick --save
 ```
 
-##Basic api server
+##Basic API server
 
 Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
@@ -37,6 +37,84 @@ Doing a GET request on the above url will then return the data:
 ```
 {"date":"Tue, 17 May 2016 17:11:07 GMT"}
 ```
+
+##Multi-level endpoints
+
+
+It is also possible to have a longer multi-level url path with nested Objects as shown below
+
+```javascript
+var api = require('api-quick').init(8080);
+var endpoints = {
+    date: {
+        utc: function() {
+            return {date: new Date().toUTCString()};
+        },
+        iso: function() {
+            return {date: new Date().toISOString()};
+        },
+    }
+};
+api.addEndpoints(endpoints);
+```
+
+GET http://127.0.0.1:8080/date/utc
+
+```
+{"date":"Sat, 11 Jun 2016 15:04:55 GMT"}
+```
+
+GET http://127.0.0.1:8080/date/iso
+
+```
+{"date":"2016-06-11T15:04:55.418Z"}
+```
+
+## Parameters
+
+Another way of allowing different date formats might be to be specified might be my using url parameters, fpr example:
+
+```javascript
+var api = require('api-quick').init(8080);
+var endpoints = {};
+endpoints.date = function(req) {
+    if(req.body.format === 'utc') {
+        return {date: new Date().toUTCString()};
+    } else {
+        return {date: new Date().toISOString()};
+    }
+};
+api.addEndpoints(endpoints);
+```
+
+GET http://127.0.0.1:8080/date?format=utc
+
+```
+{"date":"Sat, 11 Jun 2016 15:04:55 GMT"}
+```
+
+GET http://127.0.0.1:8080/date?format=iso
+
+```
+{"date":"2016-06-11T15:04:55.418Z"}
+```
+
+
+## Callbacks
+
+The handler can also return the result by taking a callback function as an argument, for example:
+
+```javascript
+var api = require('api-quick').init(8080);
+var endpoints = {};
+endpoints.date = function(req, callback) {
+    var data = {date: new Date().toISOString()};
+    callback(null, data);
+};
+api.addEndpoints(endpoints);
+```
+
+Note that the first argument is an optional Error object, the second is the data to return and the first is an optional Object containing extra information about the response.
 
 ## URL Layout
 
@@ -170,7 +248,7 @@ Endpoint specific auth functions are used if present and if not then the global 
 ##Initialisation options
 
 | Field      | Description                                               | Default |
-|:-----------|:----------------------------------------------------------|---------|
+|:---------- |:--------------------------------------------------------- | ------- |
 | SSL        | Specifies SSL encryption settings (see above)             | false   |
 | rateLimit  | Specifies rate limit settings (see above)                 | false   |
 | prettyJson | Pretty print the JSON response data                       | false   |
