@@ -256,7 +256,6 @@ Endpoint specific auth functions are used if present and if not then the global 
 
 ## Dependencies
 
-+ fs
 + http
 + https
 + secure-compare
