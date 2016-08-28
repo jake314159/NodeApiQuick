@@ -3,6 +3,14 @@ var middleware = require('../lib/middleware');
 
 describe('Middleware', function () {
 
+    it('No middleware', function (done) {
+        var i = 0;
+        var mw = new middleware();
+        mw.run({}, {}, function() {
+            done();
+        });
+    });
+
     it('Single middleware', function (done) {
         var i = 0;
         var mw = new middleware();
