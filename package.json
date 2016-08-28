@@ -36,8 +36,6 @@
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "events": "^1.1.0",
-    "http": "0.0.0",
-    "https": "^1.0.0",
     "secure-compare": "^3.0.1",
     "url": "^0.11.0"
   },
