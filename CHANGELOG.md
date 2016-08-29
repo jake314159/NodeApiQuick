@@ -1,5 +1,16 @@
 # Release history
 
+## Unreleased
+
++ Reduce dependencies
++ Fix leaking x-powered-by header
++ Various bug fixes
++ More tests
+
+## v0.3.2 (2016-06-14)
++ Performance benchmarks
++ Documentation improvements
+
 ## v0.3.1 (2016-06-12)
 
 + Fixup error in README

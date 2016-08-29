@@ -3,9 +3,7 @@
 set -e 
 set -o pipefail
 
-files=(test/*)
-
-echo ${files[*]}
+files=(test/*.js)
 
 for item in ${files[*]}
 do
