@@ -11,7 +11,7 @@ Create a simple JSON based API server in as little as 6 lines with built in supp
 
 
 
-##Install me
+## Install me
 
 Install using [npm](https://www.npmjs.com/package/api-quick) with the command
 
@@ -19,7 +19,7 @@ Install using [npm](https://www.npmjs.com/package/api-quick) with the command
 npm install api-quick --save
 ```
 
-##Basic API server
+## Basic API server
 
 Time for a quick 6 line example! The below code creates an api server that responds to the port 8080 and returns the current date-time with the url "http://127.0.0.1:8080/date".
 
@@ -38,7 +38,7 @@ Doing a GET request on the above url will then return the data:
 {"date":"Tue, 17 May 2016 17:11:07 GMT"}
 ```
 
-##Multi-level endpoints
+## Multi-level endpoints
 
 
 It is also possible to have a longer multi-level url path with nested Objects as shown below
@@ -202,7 +202,7 @@ curl -H "Authorization: Basic dXNlcjpwYXNz" 127.0.0.1:8080/date
 
 The authentication works by running an authentication function that returns (via a callback) either *true* or *false* indicating if the username and password given is valid. There are a few method of doing this.
 
-###One
+### One
 
 By providing username and password pairs in a json format. This will be applied as a global auth function.
 
@@ -216,7 +216,7 @@ Multiple password keys can also be supplied for one user with an array.
 api.authByJson({'username': ['key1', 'key2']});
 ```
 
-###Two
+### Two
 
 By using a global auth function which applies to all endpoints.
 
@@ -226,7 +226,7 @@ api.auth(function(user, pass, callback) {
 });
 ```
 
-###Three
+### Three
 
 By doing an endpoint specific function (supplied in the extra paramiter)
 
@@ -241,7 +241,7 @@ api.addEndpoints(endpoints, {
 Endpoint specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 
 
-##Initialisation options
+## Initialisation options
 
 | Field      | Description                                               | Default |
 |:---------- |:--------------------------------------------------------- | ------- |

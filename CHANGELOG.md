@@ -1,6 +1,6 @@
 # Release history
 
-## v0.3.3
+## v0.3.3 (2017-04-02)
 
 + Reduce dependencies
 + Fix leaking x-powered-by header
