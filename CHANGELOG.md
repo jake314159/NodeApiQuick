@@ -1,5 +1,10 @@
 # Release history
 
+## Unreleased
+
++ Able to add custom headers to requests (for all requests and for specific endpoints) with the ```headers``` init option
++ Added ```Access-Control-Allow-Origin: *``` header by default as it's required for common use cases
+
 ## v0.3.3 (2017-04-02)
 
 + Reduce dependencies

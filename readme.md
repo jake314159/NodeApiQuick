@@ -251,8 +251,9 @@ Endpoint specific auth functions are used if present and if not then the global 
 | consoleLog | Log events to standard out for debugging                  | 'info'  |
 | compress   | Compress all connections with gzip                        | false   |
 | maxDepth   | Maximum number of url arguments to allow                  | 1       |
-| debug      | Include extra error error information in responses        | false   |
+| debug      | Include extra debug information in responses              | false   |
 | fullRequest| Include all the request information avalible              | false   |
+| headers    | An object containing additional headers to add to all requests | {} |
 
 ## Dependencies
 
