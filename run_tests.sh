@@ -7,5 +7,5 @@ files=(test/*.js)
 
 for item in ${files[*]}
 do
-  mocha $item
+  mocha --exit $item
 done
