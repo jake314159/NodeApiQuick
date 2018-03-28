@@ -254,6 +254,7 @@ Endpoint specific auth functions are used if present and if not then the global 
 | debug      | Include extra debug information in responses              | false   |
 | fullRequest| Include all the request information avalible              | false   |
 | headers    | An object containing additional headers to add to all requests | {} |
+| cacheControl | Control cache behaviour              | {public: true, maxAge: 30} |
 
 ## Dependencies
 
