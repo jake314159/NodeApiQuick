@@ -240,6 +240,54 @@ api.addEndpoints(endpoints, {
 
 Endpoint specific auth functions are used if present and if not then the global function is used. If there are no auth functions then all requests are authorised.
 
+## Cache Control
+
+The cache control object can take most/all of the [valid flags](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control), converted to camel case.
+Cache option can be passed into the ```init``` function to apply it to all endpoints or to the ```addEndpoints``` method to apply only to specific endpoints.
+Endpoint specific cacheControl settings will take priority over global cache settings.
+Note that in debug mode caching will be disabled.
+
+
+Here are some common examples:
+
+
+**Don't cache any endpoints**
+
+```javascript
+api.init(8080, {
+  'cacheControl': false
+});
+```
+
+**Cache for a year**
+
+```javascript
+api.init(8080, {
+  'cacheControl': 31557600
+});
+```
+
+which is the same as
+
+```javascript
+api.init(8080, {
+  'cacheControl': {
+    public: true,
+    maxAge: 31557600
+  }
+});
+```
+
+**Cache a single endpoint for 1 day client side but not in the cdn**
+
+```javascript
+api.addEndpoints(endpoints, {
+  'cacheControl': {
+    private: true,
+    maxAge: 86400
+  }
+});
+```
 
 ## Initialisation options
 
